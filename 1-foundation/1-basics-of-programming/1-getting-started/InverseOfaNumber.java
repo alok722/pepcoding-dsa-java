@@ -7,6 +7,8 @@
 // Sample Input: 28346751
 // Sample Output: 73425681
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/inverse-of-a-number-official/ojquestion
+
 import java.util.*;
 
 public class InverseOfaNumber {

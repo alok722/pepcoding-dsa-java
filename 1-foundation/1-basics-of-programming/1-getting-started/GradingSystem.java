@@ -8,6 +8,8 @@
   	  2.5 for marks less than equal to 60, print below par. 
 */
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/grading-system-official/ojquestion
+
 import java.util.*;
 
 public class GradingSystem {

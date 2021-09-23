@@ -5,6 +5,8 @@
 4. For each input value of n, print "prime" if the number is prime and "not prime" otherwise.
 */
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/is-number-prime-official/ojquestion
+
 import java.util.*;
 
 public class IsPrime {

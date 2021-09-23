@@ -1,3 +1,4 @@
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/pythagorean-triplet-official/ojquestion
 
 import java.util.*;
 

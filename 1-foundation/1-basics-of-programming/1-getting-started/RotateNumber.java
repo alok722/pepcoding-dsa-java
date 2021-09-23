@@ -11,6 +11,8 @@
 // 2
 // Sample Output: 845629
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/rotate-a-number-official/ojquestion
+
 import java.util.*;
 
 public class RotateNumber {

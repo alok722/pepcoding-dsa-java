@@ -3,6 +3,8 @@
 // 3. Take input "num1" and "num2" as the two numbers.
 // 4. Print their GCD and LCM.
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/gcd-and-lcm-official/ojquestion
+
 import java.util.*;
 
 public class GcdAndLcm {

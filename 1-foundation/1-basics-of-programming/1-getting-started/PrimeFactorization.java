@@ -2,6 +2,9 @@
 // 1. You are required to display the prime factorization of a number.
 // 2. Take as input a number n.
 // 3. Print all its prime factors from smallest to largest.
+
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/prime-factorisation-official/ojquestion
+
 import java.util.*;
 
 public class PrimeFactorization {

@@ -4,6 +4,8 @@
 
 // A Number can tolerate number of division by 10 is equal to the number of digits in the number.
 
+// Question Link: https://pepcoding.com/resources/online-java-foundation/getting-started/count-digits-official/ojquestion
+
 import java.util.*;
 
 public class CountDigit {

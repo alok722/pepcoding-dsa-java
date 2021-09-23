@@ -6,6 +6,8 @@
 // Eg: 24 -> 1*24, 2*12, 3*8, 4*6, after this it will repeat itself, So 2n
 // Eg: 36 -> 1*36, 2*18, 3*12, 4*9, 6*6, after this it will repeat itself, So (2n+1)
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/benjamin-bulbs-official/ojquestion
+
 import java.util.*;
 
 public class BenjaminBulbs {

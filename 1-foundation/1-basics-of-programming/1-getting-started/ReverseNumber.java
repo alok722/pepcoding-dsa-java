@@ -5,6 +5,8 @@
 // Sample Input: 65784383
 // Sample Output: 38384367
 
+// Question: https://pepcoding.com/resources/online-java-foundation/getting-started/reverse-a-number-official/ojquestion
+
 import java.util.*;
 
 public class ReverseNumber {
