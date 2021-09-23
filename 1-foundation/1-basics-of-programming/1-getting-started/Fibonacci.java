@@ -10,7 +10,6 @@ import java.util.*;
 
 public class Fibonacci {
     public static void main(String[] args) {
-        // write your code here
         int a = 0;
         int b = 1;
         int c = 0;

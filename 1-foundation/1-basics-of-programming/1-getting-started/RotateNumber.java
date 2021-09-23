@@ -27,10 +27,11 @@ public class RotateNumber {
             temp = temp / 10;
             count++;
         }
-        // Rotation is going to repeat itself after DigitCount
+        // 💡 Rotation is going to repeat itself after DigitCount
         k = k % count;
 
-        // If K is negative, then we need to rotate to the left instead we are rotating
+        // 💡 If K is negative, then we need to rotate to the left instead we are
+        // rotating
         // to the right more number of times
         if (k < 0)
             k = k + count;

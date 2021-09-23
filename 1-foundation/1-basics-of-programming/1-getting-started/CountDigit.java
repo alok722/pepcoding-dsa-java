@@ -2,7 +2,7 @@
 // 2. Take as input "n", the number for which the digits has to be counted.
 // 3. Print the digits in that number.
 
-// A Number can tolerate number of division by 10 is equal to the number of digits in the number.
+//💡 A Number can tolerate number of division by 10 is equal to the number of digits in the number.
 
 // Question Link: https://pepcoding.com/resources/online-java-foundation/getting-started/count-digits-official/ojquestion
 

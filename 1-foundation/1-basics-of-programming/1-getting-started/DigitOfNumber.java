@@ -27,7 +27,7 @@ public class DigitOfNumber {
             temp = temp / 10;
             count++;
         }
-        // Calculating divisor, if DigitCount is 5 then we will divide num by 10^4 to
+        // 💡 Calculating divisor, if DigitCount is 5 then we will divide num by 10^4 to
         // get the first digit
         int div = (int) Math.pow(10, count - 1);
         while (div != 0) {
