@@ -12,6 +12,8 @@
 // 3
 // 8
 
+// 💡 Hint: In comments
+
 // Question: https://pepcoding.com/resources/online-java-foundation/getting-started/digits-of-a-number-official/ojquestion
 
 import java.util.*;
