@@ -52,5 +52,6 @@ public class MaxMin2 {
             }
         }
         System.out.print(secondMax + " " + secondMin);
+        sc.close();
     }
 }
