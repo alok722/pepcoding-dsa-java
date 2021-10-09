@@ -1472,7 +1472,7 @@ public class BrokenEconomy {
 1. You are given a number n, representing the size of array a.
 2. You are given n numbers, representing elements of array a.
 
-Asssumption - Array is sorted. Array may have duplicate values.
+Assumption - Array is sorted. Array may have duplicate values.
 ```java
 import java.io.*;
 
@@ -1519,6 +1519,220 @@ public class FirstIndexLastIndex {
 
         System.out.println(fi);
         System.out.println(li);
+    }
+}
+```
+
+<hr>
+<h3 align="center">2D Arrays</h3>
+
+**2d Arrays Demo**
+1. You are given a number n, representing the number of rows.
+2. You are given a number m, representing the number of columns.
+3. You are given n*m numbers, representing elements of 2d array a.
+4. You are required to display the contents of 2d array as suggested by output format below.
+```java
+import java.util.*;
+
+public class Demo{
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int row = sc.nextInt();
+        int col = sc.nextInt();
+        int[][] arr = new int[row][col];
+        for (int i = 0; i < arr.length; i++) {
+        for (int j = 0; j < arr[0].length; j++) {
+            arr[i][j] = sc.nextInt();
+        }  
+        }
+        for (int i = 0; i < arr.length; i++) {
+        for (int j = 0; j < arr[0].length; j++) {
+            System.out.print(arr[i][j] + " ");
+        }
+        System.out.println();
+        }
+    }
+}
+```
+**Matrix Multiplication**
+1. You are given a number n1, representing the number of rows of 1st matrix.
+2. You are given a number m1, representing the number of columns of 1st matrix.
+3. You are given n1*m1 numbers, representing elements of 2d array a1.
+4. You are given a number n2, representing the number of rows of 2nd matrix.
+5. You are given a number m2, representing the number of columns of 2nd matrix.
+6. You are given n2*m2 numbers, representing elements of 2d array a2.
+7. If the two arrays representing two matrices of dimensions n1 * m1 and n2 * m2 can be multiplied, display the contents of prd array as specified in output Format.
+8. If the two arrays can't be multiplied, print "Invalid input".
+```java
+import java.util.*;
+
+public class ArrayMultiplication {
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int row1 = scn.nextInt();
+        int col1 = scn.nextInt();
+        // Input 1st 2D Array
+        int[][] arr1 = new int[row1][col1];
+        for (int i = 0; i < row1; i++) { // 1
+            for (int j = 0; j < col1; j++) {
+                arr1[i][j] = scn.nextInt();
+            }
+        }
+        int row2 = scn.nextInt();
+        int col2 = scn.nextInt();
+        // Input 2nd 2D Array
+        int[][] arr2 = new int[row2][col2];
+        for (int i = 0; i < row2; i++) {
+            for (int j = 0; j < col2; j++) {
+                arr2[i][j] = scn.nextInt();
+            }
+        }
+        // checking if multiplication is possible
+        if (col1 != row2) {
+            System.out.print("Invalid input");
+            return;
+        }
+        // Row varies while column stays same for individual value.
+        int[][] ans = new int[row1][col2];
+        for (int i = 0; i < ans.length; i++) {
+            for (int j = 0; j < ans[0].length; j++) {
+                // col1 or row2
+                for (int k = 0; k < col1; k++) {
+                    ans[i][j] += (arr1[i][k] * arr2[k][j]);
+                }
+            }
+        }
+        for (int i = 0; i < ans.length; i++) {
+            for (int j = 0; j < ans[0].length; j++) {
+                System.out.print(ans[i][j] + " ");
+            }
+            System.out.println();
+        }
+        scn.close();
+    }
+}
+```
+**The State Of Wakanda - 1**
+The historic state of Wakanda has various monuments and souvenirs which are visited by many travelers every day. The guides follow a prescribed route of visiting the monuments which improve them understand the relevance of each monument. 
+
+The route of the monument is fixed and expressed in a 2-d matrix where the travelers visit the prescribed next monument. For example
+
+1  2  3
+4  5  6
+7  8  9
+
+is the prescribed route and the visitors travels this path: 1->2->3->4->5->6->7->8->9
+
+However, a certain visitor decides to travel a different path as follows: 
+1. He first travels southwards till no further south places are available.
+2. He then moves only 1 place eastwards.
+3. He starts to move again towards north till any further north moves are available. 
+This continues till all the places are covered. 
+
+For example, the monuments are named as follows:
+1  2  3
+4  5  6
+7  8  9
+
+Path followed by traveler: 1->4->7->8->5->2->3->6->9
+
+You are required to print the path that this traveler follows to visit all places.
+
+
+1. You will be given a number n, representing the number of rows.
+2. You will be given a number m, representing the number of columns.
+3. You will be given n*m numbers, representing elements of 2d arrays.
+
+Note - Please check the output format for details.
+```java
+import java.util.*;
+
+public class TheStateOfWakandaOne {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int row = sc.nextInt();
+        int col = sc.nextInt();
+        // Input Array
+        int[][] arr = new int[row][col];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        // Loop to print 2D array Vertically,
+        for (int j = 0; j < arr[0].length; j++) {
+            // If Even Print from Top to Down
+            if (j % 2 == 0) {
+                for (int i = 0; i < arr.length; i++) {
+                    System.out.println(arr[i][j]);
+                }
+            } else {
+                // If Odd Print from Down to Top
+                for (int i = arr.length - 1; i >= 0; i--) {
+                    System.out.println(arr[i][j]);
+                }
+            }
+        }
+        sc.close();
+    }
+}
+```
+**Spiral Display**
+1. You are given a number n, representing the number of rows.
+2. You are given a number m, representing the number of columns.
+3. You are given n*m numbers, representing elements of 2d array a.
+4. You are required to traverse and print the contents of the 2d array in form of a spiral.
+Note - Please check the sample output for details.  
+*Approach*:  
+![Pattern 19](./assets/SpiralApproach.jpg "Pattern 19")
+```java
+import java.util.*;
+
+public class SpiralDisplay {
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int m = scn.nextInt();
+        int[][] arr = new int[n][m];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                arr[i][j] = scn.nextInt();
+            }
+        }
+        int top = 0;
+        int left = 0;
+        int down = arr.length - 1;
+        int right = arr[0].length - 1;
+        int dir = 0;
+        int i;
+        while (top <= down && left <= right) {
+            if (dir == 0) {
+                for (i = top; i <= down; i++) {
+                    System.out.println(arr[i][left]);
+                }
+                left++;
+            }
+            if (dir == 1) {
+                for (i = left; i <= right; i++) {
+                    System.out.println(arr[down][i]);
+                }
+                down--;
+            }
+            if (dir == 2) {
+                for (i = down; i >= top; i--) {
+                    System.out.println(arr[i][right]);
+                }
+                right--;
+            }
+            if (dir == 3) {
+                for (i = right; i >= left; i--) {
+                    System.out.println(arr[top][i]);
+                }
+                top++;
+            }
+            dir = (dir + 1) % 4;
+        }
     }
 }
 ```
