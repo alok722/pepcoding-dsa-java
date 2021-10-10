@@ -1685,7 +1685,7 @@ public class TheStateOfWakandaOne {
 4. You are required to traverse and print the contents of the 2d array in form of a spiral.
 Note - Please check the sample output for details.  
 *Approach*:  
-![Pattern 19](./assets/SpiralApproach.jpg "Pattern 19")
+![SpiralApproach](./assets/SpiralApproach.jpg "SpiralApproach")
 ```java
 import java.util.*;
 
@@ -1732,6 +1732,266 @@ public class SpiralDisplay {
                 top++;
             }
             dir = (dir + 1) % 4;
+        }
+    }
+}
+```
+**Exit Point Of A Matrix**
+1. You are given a number n, representing the number of rows.
+2. You are given a number m, representing the number of columns.
+3. You are given n*m numbers (1's and 0's), representing elements of 2d array a.
+4. Consider this array a maze and a player enters from top-left corner in east direction.
+5. The player moves in the same direction as long as he meets '0'. On seeing a 1, he takes a 90 deg right turn.
+6. You are required to print the indices in (row, col) format of the point from where you exit the matrix.
+```java
+import java.util.*;
+
+public class ExitPointOfAMatrix {
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner sc = new Scanner(System.in);
+        int r = sc.nextInt();
+        int c = sc.nextInt();
+        int[][] arr = new int[r][c];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        // Have to start from (0,0) toward East
+        int dir = 0; // 0 - East, 1 - South, 2 - West, 3 - North
+        int i = 0;
+        int j = 0;
+        while (true) {
+            // If value is != 0 then we have to take turn so changing dir
+            dir = (dir + arr[i][j]) % 4;
+            if (dir == 0) {
+                // East - Move in the same row
+                j++;
+            } else if (dir == 1) {
+                // South - Move down the column
+                i++;
+            } else if (dir == 2) {
+                // West - Move backwards in the row
+                j--;
+            } else if (dir == 3) {
+                // North - Move up the column
+                i--;
+            }
+            // To break loop if I am out of matrix
+            if (i < 0) {
+                i++;
+                break;
+            } else if (j < 0) {
+                j++;
+                break;
+            } else if (i == arr.length) {
+                i--;
+                break;
+            } else if (j == arr[0].length) {
+                j--;
+                break;
+            }
+        }
+        System.out.println(i);
+        System.out.println(j);
+        sc.close();
+    }
+}
+```
+**Rotate By 90 Degree**
+1. You are given a number n, representing the number of rows and number of columns.
+2. You are given n*n numbers, representing elements of 2d array a.
+3. You are required to rotate the matrix by 90 degree clockwise and then display the contents using display function.  
+*Note - you are required to do it in-place i.e. no extra space should be used to achieve it .* 
+```java
+import java.util.*;
+
+public class RotateMatrix {
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        // 1st Row -> Last column
+        // 2nd Row -> 2nd last Column and so on...
+        // Transpose: 1st Row -> 1st Column and so on...
+        // 💡 First Transpose then Reverse Column
+        // How to reverse column? - reverse row by row will result in reversed column
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        rotateBy90(arr);
+        display(arr);
+        sc.close();
+    }
+
+    public static void rotateBy90(int[][] arr) {
+        // transpose - moving in upper Triangle only.
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr[0].length; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[j][i];
+                arr[j][i] = temp;
+            }
+        }
+        // reverse columns i.e row by row
+        for (int i = 0; i < arr.length; i++) {
+            int li = 0;
+            int ri = arr[0].length - 1;
+            while (li <= ri) {
+                int temp = arr[i][li];
+                arr[i][li] = arr[i][ri];
+                arr[i][ri] = temp;
+                li++;
+                ri--;
+            }
+        }
+    }
+
+    public static void display(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+```
+**Ring Rotate**  
+You are given a n*m matrix where n are the number of rows and m are the number of columns. You are also given n*m numbers representing the elements of the matrix.
+You will be given a ring number 's' representing the ring of the matrix. For details, refer to image.
+
+![shell-rotate](./assets/shell-rotate.jpg "shell-rotate")
+
+You will be given a number 'r' representing number of rotations in an anti-clockwise manner of the specified ring.
+You are required to rotate the 's'th ring by 'r' rotations and display the rotated matrix.
+```java
+import java.util.*;
+
+public class ShellRotate {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[][] arr = new int[n][m];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        // Which shell to rotate?
+        int s = sc.nextInt();
+        // How many time?
+        int r = sc.nextInt();
+        rotateShell(arr, s, r);
+        display(arr);
+        sc.close();
+    }
+
+    public static void rotateShell(int[][] arr, int s, int r) {
+        // Extract OneD Array
+        int[] oned = fillOnedFromShell(arr, s);
+        rotate(oned, r);
+        fillShellFromOned(arr, s, oned);
+    }
+
+    public static int[] fillOnedFromShell(int[][] arr, int s) {
+        // if Shell = 3, then Box TopLeft = S-1, S-1, Box BottomDown = arr.length-S
+        int minRow = s - 1;
+        int minCol = s - 1;
+        int maxRow = arr.length - s;
+        int maxCol = arr[0].length - s;
+        // corners are getting repetitive so -4
+        // leftWall + bottomWall + rightWall + topWall
+        // int size = (2 * (maxRow - minRow + 1)) + (2 * (maxCol - minCol + 1)) - 4;
+        int size = 2 * (maxRow - minRow + maxCol - minCol);
+        int[] oned = new int[size];
+
+        // leftWall
+        int idx = 0;
+        for (int i = minRow, j = minCol; i <= maxRow; i++) {
+            oned[idx] = arr[i][j];
+            idx++;
+        }
+        // bottomWall
+        for (int i = maxRow, j = minCol + 1; j <= maxCol; j++) {
+            oned[idx] = arr[i][j];
+            idx++;
+        }
+        // rightWall
+        for (int i = maxRow - 1, j = maxCol; i >= minRow; i--) {
+            oned[idx] = arr[i][j];
+            idx++;
+        }
+        // topWall
+        for (int i = minRow, j = maxCol - 1; j >= minCol + 1; j--) {
+            oned[idx] = arr[i][j];
+            idx++;
+        }
+        return oned;
+    }
+
+    public static void rotate(int[] oned, int r) {
+        r = r % oned.length;
+        if (r < 0)
+            r += oned.length;
+        reverse(oned, 0, oned.length - r - 1);
+        reverse(oned, oned.length - r, oned.length - 1);
+        reverse(oned, 0, oned.length - 1);
+    }
+
+    public static void reverse(int[] oned, int li, int ri) {
+        while (li < ri) {
+            int temp = oned[li];
+            oned[li] = oned[ri];
+            oned[ri] = temp;
+            li++;
+            ri--;
+        }
+    }
+
+    public static void fillShellFromOned(int[][] arr, int s, int[] oned) {
+        // if Shell = 3, then Box TopLeft = S-1, S-1, Box BottomDown = arr.length-S
+        int minRow = s - 1;
+        int minCol = s - 1;
+        int maxRow = arr.length - s;
+        int maxCol = arr[0].length - s;
+
+        // leftWall
+        int idx = 0;
+        for (int i = minRow, j = minCol; i <= maxRow; i++) {
+            arr[i][j] = oned[idx];
+            idx++;
+        }
+        // bottomWall
+        for (int i = maxRow, j = minCol + 1; j <= maxCol; j++) {
+            arr[i][j] = oned[idx];
+            idx++;
+        }
+        // rightWall
+        for (int i = maxRow - 1, j = maxCol; i >= minRow; i--) {
+            arr[i][j] = oned[idx];
+            idx++;
+        }
+        // topWall
+        for (int i = minRow, j = maxCol - 1; j >= minCol + 1; j--) {
+            arr[i][j] = oned[idx];
+            idx++;
+        }
+    }
+
+    public static void display(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 }
