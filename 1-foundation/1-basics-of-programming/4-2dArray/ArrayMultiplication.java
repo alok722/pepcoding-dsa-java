@@ -16,7 +16,7 @@ public class ArrayMultiplication {
         int col1 = scn.nextInt();
         // Input 1st 2D Array
         int[][] arr1 = new int[row1][col1];
-        for (int i = 0; i < row1; i++) { // 1
+        for (int i = 0; i < row1; i++) {
             for (int j = 0; j < col1; j++) {
                 arr1[i][j] = scn.nextInt();
             }
@@ -33,6 +33,7 @@ public class ArrayMultiplication {
         // checking if multiplication is possible
         if (col1 != row2) {
             System.out.print("Invalid input");
+            scn.close();
             return;
         }
         // Row varies while column stays same for individual value.
