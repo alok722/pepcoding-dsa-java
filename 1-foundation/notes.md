@@ -1996,3 +1996,363 @@ public class ShellRotate {
     }
 }
 ```
+**The State Of Wakanda - 2**
+The historic state of Wakanda has various monuments and souveniers which are visited by many travellers every day. The guides follow a prescribed route of visiting the monuments which improves them understand the relevance of each monument. The route of the monument is fixed and expressed in a 2-d matrix where the travellers visit the prescribed next monument. For example
+1  2  3
+4  5  6
+7  8  9
+is the prescribed route and the visitors travels this path: 1->2->3->4->5->6->7->8->9
+However, a certain visitor decides to travel a different path as follows:
+1. The visitor only plans to visit the upper diagonal triangle of the monument list.
+2. The visitor travels diagonally till there are no more moves left in the current journey. 
+3. He then visits the adjacent monument to the first monument of current diagonal journey. 
+4. He continues the same path till all the monuments of the upper half have been travelled.
+For Example:
+The monuments are named as:
+1    2    3    4
+5    6    7    8
+9   10  11  12
+13 14  15  16
+The path followed by the visitor is: 1->6->11->16->2->7->12->3->8->4
+You are required to print the path followed by the traveller to visit all the monuments.
+Refer to the photo for a better clarification.
+1. You are given a number n, representing the number of rows and columns of a square matrix.
+2. You are given n * n numbers, representing elements of 2d array a.
+3. You are required to diagonally traverse the upper half of the matrix and print the contents.
+![wakanda2](./assets/wakanda2.jpg "wakanda2")
+```java
+// TODO
+```
+**Saddle Price**
+1. You are given a square matrix of size 'n'. You are given n*n elements of the square matrix. 
+2. You are required to find the saddle price of the given matrix and print the saddle price. 
+3. The saddle price is defined as the least price in the row but the maximum price in the column of the matrix.
+```java
+// TODO
+```
+**Search In A Sorted 2d Array**
+1. You are given a number n, representing the number of rows and columns of a square matrix.
+2. You are given n * n numbers, representing elements of 2d array a. 
+Note - Each row and column is sorted in increasing order.
+3. You are given a number x.
+4. You are required to find x in the matrix and print it's location int (row, col) format as discussed in output format below.
+5. In case element is not found, print "Not Found".
+```java
+// TODO
+```
+**Saddle Price**
+1. You are given a square matrix of size 'n'. You are given n*n elements of the square matrix. 
+2. You are required to find the saddle price of the given matrix and print the saddle price. 
+3. The saddle price is defined as the least price in the row but the maximum price in the column of the matrix.
+```java
+// TODO
+```
+**Fibonacci-dp**
+1. You are given a number n.
+2. You are required to print the nth element of fibonnaci sequence.
+
+Note -> Notice precisely how we have defined the fibonnaci sequence
+0th element -> 0
+1st element -> 1
+2nd element -> 1
+3rd element -> 2
+4th element -> 3
+5th element -> 5
+6th element -> 8
+```java
+// TODO
+```
+
+<hr>
+<h3 align="center">String, String Builder and ArrayList</h3>
+
+**Print All Palindromic Substrings**
+1. You are given a string. 
+2. You have to print all palindromic substrings of the given string.
+```java
+import java.util.*;
+
+public class PrintAllPalindromeSubStr {
+	public static void solution(String str) {
+		for (int i = 0; i < str.length(); i++) {
+			for (int j = i + 1; j <= str.length(); j++) {
+				String sub = str.substring(i, j);
+				boolean isPalindrome = isPalindrome(sub);
+				if (isPalindrome)
+					System.out.println(sub);
+			}
+		}
+
+	}
+	public static boolean isPalindrome(String sub) {
+		boolean flag = true;
+		int left = 0;
+		int right = sub.length() - 1;
+		while (left < right) {
+			char charAtLeft = sub.charAt(left);
+			char charAtRight = sub.charAt(right);
+			if (charAtLeft != charAtRight) {
+				flag = false;
+				break;
+			}
+			left++;
+			right--;
+		}
+		return flag;
+	}
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.nextLine();
+		solution(str);
+		scn.close();
+	}
+}
+```
+**String Compression**
+1. You are given a string. 
+2. You have to compress the given string in the following two ways - 
+   First compression -> The string should be compressed such that consecutive duplicates of characters are replaced with a single character.
+   For "aaabbccdee", the compressed string will be "abcde".
+   Second compression -> The string should be compressed such that consecutive duplicates of characters are replaced with the character and followed by the number of consecutive duplicates.
+   For "aaabbccdee", the compressed string will be "a3b2c2de2".
+```java
+import java.util.*;
+
+public class StringCompression {
+    public static String compression1(String str) {
+        // write your code here
+        String ans = "";
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1)) {
+                // nothing
+            } else {
+                ans += str.charAt(i);
+            }
+        }
+        ans += str.charAt(str.length() - 1);
+        return ans;
+    }
+    public static String compression2(String str) {
+        // write your code here
+        String ans = "";
+        int count = 1;
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1)) {
+                count++;
+            } else {
+                ans += str.charAt(i);
+                if (count > 1)
+                    ans += count;
+                count = 1;
+            }
+        }
+        ans += str.charAt(str.length() - 1);
+        if (count > 1)
+            ans += count;
+        return ans;
+    }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        String str = scn.next();
+        System.out.println(compression1(str));
+        System.out.println(compression2(str));
+        scn.close();
+    }
+}
+```
+**Toggle Case**
+1. You are given a string that contains only lowercase and uppercase alphabets. 
+2. You have to toggle the case of every character of the given string.
+```java
+public class ToggleCase {
+    public static String toggleCase(String str) {
+        String result = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
+                char temp = str.charAt(i);
+                result += Character.toLowerCase(temp);
+            } else {
+                char temp = str.charAt(i);
+                result += Character.toUpperCase(temp);
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        String str = scn.next();
+        System.out.println(toggleCase(str));
+        scn.close();
+    }
+}
+```
+Or,
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static String toggleCase(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        for (int i = 0; i < sb.length(); i++) {
+            char ch = sb.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                ch = (char) (ch + 'a' - 'A');
+            } else {
+                ch = (char) (ch + 'A' - 'a');
+            }
+            sb.setCharAt(i, ch);
+        }
+        return sb.toString();
+    }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        String str = scn.next();
+        System.out.println(toggleCase(str));
+    }
+}
+```
+**String With Difference Of Every Two Consecutive Characters**
+1. You are given a string that contains only lowercase and uppercase alphabets. 
+2. You have to form a string that contains the difference of ASCII values of every two consecutive characters between those characters.
+   For "abecd", the answer should be "a1b3e-2c1d", as 
+   'b'-'a' = 1;
+   'e'-'b' = 3;
+   'c'-'e' = -2;
+   'd'-'c' = 1;
+```java
+import java.util.*;
+
+public class StringWithDiff {
+    public static String solution(String str) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < str.length(); i++) {
+            // If last character
+            if (i == str.length() - 1) {
+                char chi = str.charAt(i);
+                sb.append(chi);
+            } else {
+                char chi = str.charAt(i);
+                char chip1 = str.charAt(i + 1);
+                sb.append(chi);
+                sb.append(chip1 - chi);
+            }
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        String str = scn.next();
+        System.out.println(solution(str));
+        scn.close();
+    }
+
+}
+```
+**Intro to ArrayList**
+```java
+import java.util.*;
+
+public class ArrayListDemo {
+    public static void main(String[] args) throws Exception {
+        ArrayList<Integer> list; // declare
+
+        list = new ArrayList<>(); // define
+        System.out.println(list.size() + " -> " + list); // 0 -> []
+
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        System.out.println(list.size() + " -> " + list); // 3 -> [10, 20, 30]
+
+        list.set(1, 200); // changes values, does not add a new value
+        System.out.println(list.size() + " -> " + list); // 3 -> [10, 200, 30]
+
+        list.add(1, 2000); // adds a new value, is different from set
+        System.out.println(list.size() + " -> " + list); // 4 -> [10, 2000, 200, 30]
+
+        int val = list.get(1);
+        System.out.println(val); // you will get 2000 (list[1] will not work)
+        System.out.println(list.size() + " -> " + list); // 4 -> [10, 2000, 200, 30]
+
+        list.remove(1); // deletes the value at index 1
+        System.out.println(list.size() + " -> " + list); // 3 -> [10, 200, 30]
+
+        for (int i = 0; i < list.size(); i++) {
+            int val1 = list.get(i);
+            System.out.println(val1);
+        }
+        for (int val2 : list) {
+            System.out.println(val2);
+        }
+    }
+}
+```
+**Remove Prime**
+1. You are given an ArrayList of positive integers.
+2. You have to remove prime numbers from the given ArrayList and return the updated ArrayList.
+
+Note -> The order of elements should remain same.
+💡 For removal of elements in ArrayList always run loop in reverse order.
+```java
+// 1. You are given an ArrayList of positive integers.
+// 2. You have to remove prime numbers from the given ArrayList and return the updated ArrayList.
+
+// Note -> The order of elements should remain same.
+
+// 💡 For removal of elements in ArrayList always run loop in reverse order.
+
+import java.util.*;
+
+public class RemovePrime {
+
+    public static boolean isPrime(int num) {
+        boolean isPrime = true;
+        for (int div = 2; div * div <= num; div++) {
+            if (num % div == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        return isPrime;
+    }
+
+    public static void solution(ArrayList<Integer> al) {
+        // Running loop in reverse order
+        // If loop is run in forward order, then the index of elements will be changed
+        // after removal so some elements will be escaped.
+        for (int i = al.size() - 1; i >= 0; i--) {
+            int val = al.get(i);
+            boolean isThisValPrime = isPrime(val);
+            if (isThisValPrime == true) {
+                al.remove(i);
+            }
+        }
+        // If not reverse then decrease i after every removal
+        // for (int i = 0; i < al.size(); i++) {
+        //     int val = al.get(i);
+        //     boolean isThisValPrime = isPrime(val);
+        //     if (isThisValPrime == true) {
+        //         al.remove(i);
+        //         i--;
+        //     }
+        // }
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        ArrayList<Integer> al = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            al.add(scn.nextInt());
+        }
+        solution(al);
+        System.out.println(al);
+        scn.close();
+    }
+
+}
+```
