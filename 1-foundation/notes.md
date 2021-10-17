@@ -1,4 +1,12 @@
 <h1 align="center">DSA Level 1 🔥</h1>
+
+[Getting Started](#getting-started)  
+[Patterns](#patterns)  
+[Function & Arrays](#function--arrays)  
+[2D Arrays](#2d-arrays)  
+[String, String Builder and ArrayList](#string-string-builder-and-arraylist)  
+
+
 <h2 align="center">Basics of Programming</h2>
 <h3 align="center">Getting Started</h3>
 
