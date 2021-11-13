@@ -8,8 +8,7 @@
 
 import java.util.*;
 
-public class ShellRotate {
-
+public class RingRotate {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();

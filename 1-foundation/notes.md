@@ -5,8 +5,11 @@
 [Function & Arrays](#function--arrays)  
 [2D Arrays](#2d-arrays)  
 [String, String Builder and ArrayList](#string-string-builder-and-arraylist)  
+<hr/>
 
+[Introduction to Recursion](#intro-to-recursion)
 
+<hr />
 <h2 align="center">Basics of Programming</h2>
 <h3 align="center">Getting Started</h3>
 
@@ -432,6 +435,15 @@ public class MaxMin2 {
     }
 }
 ```
+**Largest Number**
+You are given an array of N positive integers which represent digits of a number.  
+You have to form the largest number possible after performing an operation exactly once. The operation is -  
+Select two indices a and b, and swap their values.
+Print the largest number formed.
+```java
+// TODO
+```
+
 <hr>
 <h3 align="center">Patterns</h3>
 
@@ -967,6 +979,83 @@ public class Main {
     }
     return result;
   }
+}
+```
+**Any Base Multiplication**
+1. You are given a base b.
+2. You are given two numbers n1 and n2 of base b.
+3. You are required to multiply n1 and n2 and print the value.
+```java
+import java.util.*;
+
+public class AnyBaseMultiplication {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int b = scn.nextInt();
+        int n1 = scn.nextInt();
+        int n2 = scn.nextInt();
+
+        int d = getProduct(b, n1, n2);
+        System.out.println(d);
+        scn.close();
+    }
+
+    public static int getProduct(int b, int n1, int n2) {
+        // power is to form result by extending single digit aka align
+        int p = 1;
+        int result = 0;
+        while (n2 > 0) {
+            int d2 = n2 % 10;
+            n2 = n2 / 10;
+            int singleProduct = getProductWithSingleDigit(b, n1, d2);
+            result = getSum(b, result, singleProduct * p);
+            p = p * 10;
+        }
+        return result;
+    }
+
+    public static int getProductWithSingleDigit(int b, int n1, int d2) {
+        // In loop extract single digit of n1 & multiply with d2
+        int result = 0;
+        int carry = 0;
+        int power = 1;
+
+        while (n1 > 0 || carry > 0) {
+            int d1 = n1 % 10;
+            n1 = n1 / 10;
+
+            int d = d1 * d2 + carry;
+            carry = d / b;
+            d = d % b;
+
+            result += d * power;
+            // Power is to form result
+            power *= 10;
+        }
+        return result;
+    }
+
+    // 💡 if base is 8 and on addition, 10 comes up then its Q: 1, R: 2
+    public static int getSum(int b, int n1, int n2) {
+        int result = 0;
+        int sum = 0, carry = 0, multiplier = 1;
+        while (n1 > 0 || n2 > 0 || carry > 0) {
+            int digit1 = n1 % 10;
+            int digit2 = n2 % 10;
+            sum = (digit1 + digit2 + carry);
+            carry = sum / b;
+            int value = sum % b;
+
+            result += multiplier * value;
+            // increase multiplier to print the number
+            multiplier *= 10;
+
+            n1 /= 10;
+            n2 /= 10;
+        }
+        return result;
+    }
 }
 ```
 **Span Of Array**
@@ -1880,7 +1969,7 @@ You are required to rotate the 's'th ring by 'r' rotations and display the rotat
 ```java
 import java.util.*;
 
-public class ShellRotate {
+public class RingRotate {
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -2055,11 +2144,11 @@ Note - Each row and column is sorted in increasing order.
 ```java
 // TODO
 ```
-**Fibonacci-dp**
+**Fibonacci-DP**
 1. You are given a number n.
-2. You are required to print the nth element of fibonnaci sequence.
+2. You are required to print the nth element of fibonacci sequence.
 
-Note -> Notice precisely how we have defined the fibonnaci sequence
+Note -> Notice precisely how we have defined the fibonacci sequence
 0th element -> 0
 1st element -> 1
 2nd element -> 1
@@ -2306,13 +2395,6 @@ public class ArrayListDemo {
 Note -> The order of elements should remain same.
 💡 For removal of elements in ArrayList always run loop in reverse order.
 ```java
-// 1. You are given an ArrayList of positive integers.
-// 2. You have to remove prime numbers from the given ArrayList and return the updated ArrayList.
-
-// Note -> The order of elements should remain same.
-
-// 💡 For removal of elements in ArrayList always run loop in reverse order.
-
 import java.util.*;
 
 public class RemovePrime {
@@ -2361,6 +2443,145 @@ public class RemovePrime {
         System.out.println(al);
         scn.close();
     }
-
 }
+```
+**Print All Permutations Of A String Iteratively**
+1. You are given a string. 
+2. You have to print all permutations of the given string iteratively.
+```java
+// TODO
+```
+<hr />
+<h2 align="center">Recursion & Backtracking</h2>
+<h3 align="center">Introduction to Recursion</h3>
+
+**Print Decreasing**
+1. You are given a positive number n. 
+2. You are required to print the counting from n to 1.
+3. You are required to not use any loops. Complete the body of print Decreasing function to achieve it.
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        printDecreasing(n);
+    }
+    public static void printDecreasing(int n){
+        if(n == 0) return;
+        System.out.println(n);
+        printDecreasing(n-1);
+    }
+}
+```
+**Print Increasing**
+1. You are given a positive number n. 
+2. You are required to print the counting from 1 to n.
+3. You are required to not use any loops. Complete the body of print Increasing function to achieve it. Don't change the signature of the function.
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        printIncreasing(n);
+    }
+
+    public static void printIncreasing(int n){
+        if(n == 0) return;
+        printIncreasing(n-1);
+        System.out.println(n);
+    }
+}
+```
+**Print Increasing Decreasing**
+1. You are given a positive number n. 
+2. You are required to print the counting from n to 1 and back to n again.
+3. You are required to not use any loops. Complete the body of pdi function to achieve it. Don't change the signature of the function.
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        pdi(n);
+    }
+
+    public static void pdi(int n){
+        if(n == 0) return;
+        System.out.println(n);
+        pdi(n-1);
+        System.out.println(n);
+    }
+}
+```
+**Factorial**
+1. You are given a number n.
+2. You are required to calculate the factorial of the number. Don't change the signature of factorial function.
+```java
+import java.io.*;
+import java.util.*;
+
+public class Factorial {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int sum = factorial(n);
+        System.out.print(sum);
+        sc.close();
+    }
+
+    public static int factorial(int n) {
+        if (n == 0)
+            return 1;
+        else
+            return (n * factorial(n - 1));
+    }
+}
+```
+**Power-linear**
+1. You are given a number x.
+2. You are given another number n.
+3. You are required to calculate x raised to the power n. Don't change the signature of power function .
+```java
+// TODO
+```
+**Power-logarithmic**
+1. You are given a number x.
+2. You are given another number n.
+3. You are required to calculate x raised to the power n. Don't change the signature of power function.
+```java
+// TODO
+```
+**Print Zigzag**
+1. Here are a few sets of inputs and outputs for your reference  
+Input1 -> 1
+Output1 -> 1 1 1  
+Input2 -> 2
+Output2 -> 2 1 1 1 2 1 1 1 2  
+Input3 -> 3
+Output3 -> 3 2 1 1 1 2 1 1 1 2 3 2 1 1 1 2 1 1 1 2 3
+
+2. Figure out the pattern and complete the recursive function pzz to achieve the above for any positive number n.
+```java
+// TODO
+```
+**Tower Of Hanoi**
+1. There are 3 towers. Tower 1 has n disks, where n is a positive number. Tower 2 and 3 are empty.
+2. The disks are increasingly placed in terms of size such that the smallest disk is on top and largest disk is at bottom.
+3. You are required to 
+    3.1. Print the instructions to move the disks.
+    3.2. from tower 1 to tower 2 using tower 3 
+    3.3. following the rules
+        3.3.1 move 1 disk at a time.
+        3.3.2 never place a smaller disk under a larger disk.
+        3.3.3 you can only move a disk at the top.
+```java
+// TODO
 ```
