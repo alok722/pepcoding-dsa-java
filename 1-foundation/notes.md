@@ -7,7 +7,7 @@
 [String, String Builder and ArrayList](#string-string-builder-and-arraylist)  
 <hr/>
 
-[Introduction to Recursion](#intro-to-recursion)
+[Introduction to Recursion](#introduction-to-recursion)
 
 <hr />
 <h2 align="center">Basics of Programming</h2>
